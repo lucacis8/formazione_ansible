@@ -1,0 +1,28 @@
+---
+- name: Installare Apache e configurare con dati sensibili
+  hosts: web_servers
+  become: true
+  vars_files:
+    - secrets.yml
+  tasks:
+    - name: Installare Apache
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+    
+    - name: Creare un file di configurazione con dati sensibili
+      ansible.builtin.copy:
+        dest: /etc/httpd/conf.d/secure.conf
+        content: |
+          # Configurazione con variabili sensibili
+          DatabasePassword: {{ vault_db_password }}
+          ApiKey: {{ vault_api_key }}
+        owner: root
+        group: root
+        mode: '0600'
+
+    - name: Avviare Apache
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
