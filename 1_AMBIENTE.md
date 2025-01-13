@@ -78,5 +78,9 @@ vagrant up
 
 3. Accedere alle VMs con:
 ```bash
-vagrant ssh web1 vagrant ssh web2
+vagrant ssh web1
+```
+
+```bash
+vagrant ssh web2
 ```
