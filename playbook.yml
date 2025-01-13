@@ -1,0 +1,29 @@
+---
+- name: Installazione Apache su Rocky Linux
+  hosts: web_servers
+  become: yes
+  tasks:
+    - name: Installare Apache (httpd)
+      yum:
+        name: httpd
+        state: present
+
+    - name: Avviare e abilitare il servizio Apache
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Creare una pagina di prova per Apache
+      copy:
+        content: "Apache sta funzionando correttamente!"
+        dest: /var/www/html/index.html
+
+    - name: Verificare che Apache stia servendo la pagina
+      uri:
+        url: "http://localhost"
+        status_code: 200
+
+    - name: Mostrare lo stato di Apache
+      debug:
+        msg: "Apache è in esecuzione e la pagina di prova è disponibile!"
