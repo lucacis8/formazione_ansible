@@ -1,0 +1,21 @@
+---
+- name: Creare file multipli su Rocky Linux
+  hosts: all
+  tasks:
+    - name: Creare file multipli in /tmp
+      file:
+        path: "{{ item }}"
+        state: touch
+      loop:
+        - /tmp/fileA.txt
+        - /tmp/fileB.txt
+        - /tmp/fileC.txt
+
+    - name: Scrivere contenuto nei file da template
+      template:
+        src: files/content.j2  # Si trova nella cartella files
+        dest: "{{ item }}"
+      loop:
+        - /tmp/fileA.txt
+        - /tmp/fileB.txt
+        - /tmp/fileC.txt
