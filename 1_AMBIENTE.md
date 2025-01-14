@@ -1,4 +1,4 @@
-# Ambiente di Sviluppo
+# Ambiente
 
 In questa sezione, abbiamo scelto di utilizzare **Vagrant** per creare e gestire due macchine virtuali (VMs) su cui verrà successivamente eseguito **Ansible** per la configurazione automatica. Il processo di creazione delle macchine virtuali è stato automatizzato tramite un **Vagrantfile**, che definisce le caratteristiche delle VMs, inclusi i loro indirizzi IP e la rete.
 
