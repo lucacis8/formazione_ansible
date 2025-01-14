@@ -1,0 +1,23 @@
+---
+- name: Creare più file su Rocky Linux
+  hosts: web_servers
+  become: true
+
+  vars:
+    file_list:
+      - /tmp/file1.txt
+      - /tmp/file2.txt
+      - /tmp/file3.txt
+
+  tasks:
+    - name: Creare file multipli in /tmp
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: touch
+      loop: "{{ file_list }}"
+
+    - name: Scrivere contenuto nei file
+      ansible.builtin.copy:
+        dest: "{{ item }}"
+        content: "File creato tramite Ansible: {{ item }}"
+      loop: "{{ file_list }}"
