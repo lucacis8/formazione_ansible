@@ -39,13 +39,12 @@ All'interno della cartella `inventory/`, è stato inserito anche il file `web_se
 ## Comandi Utili
 
 - Visualizzare l'inventory in formato leggibile:
-
   ```bash
   ansible-inventory -i hosts.ini --list
   ansible-inventory -i inventory/inventory.yml --list
   ```
 
-Verificare la connettività con i server:
+- Verificare la connettività con i server:
   ```bash
   ansible -i hosts.ini all -m ping
   ansible -i inventory/inventory.yml all -m ping
