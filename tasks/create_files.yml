@@ -1,0 +1,13 @@
+---
+- name: Creare file multipli in /tmp
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: touch
+    mode: '0644'
+  loop: "{{ file_list }}"
+
+- name: Scrivere contenuto nei file
+  ansible.builtin.copy:
+    content: "{{ file_content }}"
+    dest: "{{ item }}"
+  loop: "{{ file_list }}"
