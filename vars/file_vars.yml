@@ -1,0 +1,8 @@
+# Lista dei file da creare
+file_list:
+  - /tmp/fileA.txt
+  - /tmp/fileB.txt
+  - /tmp/fileC.txt
+
+# Contenuto da scrivere nei file
+file_content: "File gestito da Ansible con variabili esterne."
