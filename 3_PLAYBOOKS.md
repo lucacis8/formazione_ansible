@@ -156,7 +156,7 @@ ansible-playbook main_playbook.yml
 
 ```bash
 .
-├── Vagrantfile               # Configurazione Vagrant (opzionale)
+├── Vagrantfile               # Configurazione Vagrant
 ├── ansible.cfg               # Configurazione di Ansible
 ├── hosts.ini                 # Inventory dei server
 ├── playbook.yml              # Installazione di Apache
