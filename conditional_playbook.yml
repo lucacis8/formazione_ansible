@@ -1,0 +1,34 @@
+---
+- name: Configurazione condizionata su Rocky Linux
+  hosts: web_servers
+  become: yes
+  tasks:
+    - name: Controllare l'esistenza di un file specifico
+      ansible.builtin.stat:
+        path: /tmp/testfile
+      register: file_check
+
+    - name: Creare il file se non esiste
+      ansible.builtin.file:
+        path: /tmp/testfile
+        state: touch
+      when: not file_check.stat.exists
+
+    - name: Installare Apache se non è presente
+      ansible.builtin.yum:
+        name: httpd
+        state: present
+
+    - name: Assicurarsi che Apache sia abilitato all'avvio
+      ansible.builtin.service:
+        name: httpd
+        enabled: yes
+
+    - name: Avviare Apache solo se non è attivo
+      ansible.builtin.service:
+        name: httpd
+        state: started
+
+    - name: Mostrare messaggio se Apache è attivo
+      ansible.builtin.debug:
+        msg: "Apache è attivo e funzionante!"
