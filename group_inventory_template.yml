@@ -1,0 +1,12 @@
+---
+- name: Deploy dell'elenco dei server del gruppo web_servers
+  hosts: all
+  become: true
+  tasks:
+    - name: Creare file con elenco dei server del gruppo web_servers
+      ansible.builtin.template:
+        src: templates/group_hosts_list.j2
+        dest: /tmp/web_servers_list.txt
+        owner: vagrant
+        group: vagrant
+        mode: '0644'
