@@ -39,7 +39,7 @@ Generato da Ansible in data: {{ ansible_date_time.date }}
 
 ### Playbook: dynamic_template.yml
 
-```bash
+```yml
 ---
 - name: Deploy di un template dinamico per ogni macchina
   hosts: all
@@ -63,7 +63,7 @@ ansible-playbook dynamic_template.yml
 ### Risultato
 Su ogni macchina (web1, web2), il file /tmp/machine_info.txt conterrà:
 
-```bash
+```txt
 ##########################################
 #  Configurazione Generata Automaticamente
 ##########################################
@@ -99,7 +99,7 @@ Generato da Ansible in data: {{ ansible_date_time.date }}
 
 ### Playbook: group_inventory_template.yml
 
-```bash
+```yml
 ---
 - name: Deploy dell'elenco dei server del gruppo web_servers
   hosts: all
@@ -124,7 +124,7 @@ ansible-playbook group_inventory_template.yml
 
 Su tutte le macchine (`web1`, `web2`), il file `/tmp/web_servers_list.txt` conterrà:
 
-```bash
+```txt
 ##########################################
 #  Elenco dei server nel gruppo web_servers
 ##########################################
@@ -141,7 +141,7 @@ Generato da Ansible in data: 2025-01-15
 
 ### File: hosts.ini
 
-```bash
+```ini
 [web_servers]
 web1 ansible_host=127.0.0.1 ansible_port=2222 ansible_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/web1/virtualbox/private_key ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 web2 ansible_host=127.0.0.1 ansible_port=2200 ansible_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/web2/virtualbox/private_key ansible_ssh_common_args='-o StrictHostKeyChecking=no'
