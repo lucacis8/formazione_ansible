@@ -1,0 +1,9 @@
+##########################################
+#  Elenco dei server nel gruppo web_servers
+##########################################
+
+{% for host in groups['web_servers'] %}
+- {{ host }} ({{ hostvars[host]['ansible_host'] }})
+{% endfor %}
+
+Generato da Ansible in data: {{ ansible_date_time.date }}
