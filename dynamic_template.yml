@@ -1,0 +1,12 @@
+---
+- name: Deploy di un template dinamico per ogni macchina
+  hosts: all
+  become: true
+  tasks:
+    - name: Generare file di configurazione dinamico
+      ansible.builtin.template:
+        src: templates/machine_info.j2
+        dest: /tmp/machine_info.txt
+        owner: vagrant
+        group: vagrant
+        mode: '0644'
