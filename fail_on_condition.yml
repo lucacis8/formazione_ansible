@@ -1,0 +1,14 @@
+---
+- name: Fallire se il comando produce un output specifico
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Eseguire un comando di controllo
+      ansible.builtin.shell: echo "ERRORE_CRITICO"
+      register: check_output
+
+    - name: Fallire se viene rilevato 'ERRORE_CRITICO'
+      ansible.builtin.fail:
+        msg: "È stato rilevato un ERRORE CRITICO! Interruzione del playbook."
+      when: "'ERRORE_CRITICO' in check_output.stdout"
