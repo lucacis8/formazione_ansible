@@ -1,0 +1,18 @@
+---
+- name: Verifica delle variabili definite
+  hosts: all
+  become: true
+
+  vars:
+     app_port: 8080  # Se commentata, il task fallirà
+
+  tasks:
+    - name: Verificare che la variabile 'app_port' sia definita
+      ansible.builtin.fail:
+        msg: "La variabile 'app_port' non è definita. Definirla prima di procedere."
+      when: app_port is not defined
+
+    - name: Configurare l'applicazione sulla porta specificata
+      ansible.builtin.shell: |
+        echo "Configurazione dell'app sulla porta {{ app_port }}"
+      when: app_port is defined
