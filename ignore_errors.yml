@@ -1,0 +1,14 @@
+---
+- name: Eseguire un task e ignorare gli errori
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Tentare di leggere un file che potrebbe non esistere
+      ansible.builtin.shell: cat /tmp/file_inesistente.txt
+      register: file_check
+      ignore_errors: true
+
+    - name: Mostrare il risultato del task precedente
+      ansible.builtin.debug:
+        msg: "Output del comando: {{ file_check.stdout | default('File non trovato') }}"
