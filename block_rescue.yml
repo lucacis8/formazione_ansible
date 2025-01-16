@@ -1,0 +1,25 @@
+---
+- name: Gestione degli errori con block/rescue
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Esecuzione di comandi con gestione degli errori
+      block:
+        - name: Eseguire un comando rischioso
+          ansible.builtin.shell: cat /tmp/file_inesistente.txt
+          register: risky_command
+
+        - name: Mostrare il risultato del comando
+          ansible.builtin.debug:
+            msg: "Comando riuscito: {{ risky_command.stdout }}"
+      
+      rescue:
+        - name: Gestire l'errore del comando fallito
+          ansible.builtin.debug:
+            msg: "Il comando è fallito. Eseguo il recovery..."
+
+      always:
+        - name: Questo task viene eseguito sempre
+          ansible.builtin.debug:
+            msg: "Pulizia o operazioni finali completate."
