@@ -24,14 +24,14 @@ Questa repository è un progetto di formazione su **Ansible**, un potente strume
 ## Come Iniziare
 
 1. **Clonare il repository:**
-   Per iniziare, clone il repository nel vostro ambiente locale:
+   Per iniziare, clona il repository nel tuo ambiente locale:
    ```bash
    git clone https://github.com/lucacis8/formazione_ansible
    cd formazione_ansible
    ```
 
 2. **Creare le macchine virtuali con Vagrant:**
-   Esegui il comando vagrant up per creare e avviare le macchine virtuali.
+   Esegui il comando vagrant up per creare e avviare le macchine virtuali:
    ```bash
    vagrant up
    ```
